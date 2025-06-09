@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    body{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.881);
+      height: 100vh;
+      
+    }
+    .container {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+      align-items: center;
+      color: white;
+     
+    }
+
+    .score{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 40px 0px;
+      display: none;
+    }
+
+    button{
+      cursor: pointer;
+    }
+    .choices img{
+      width: 80%;
+      height: 80%;
+      
+    }
+
+    .choices button{
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      background-color: rgb(0,0,0,0.9);
+      border: none;
+      transition: opacity 0.4s;
+    }
+
+    .choices button:hover, .resetbtn:hover{
+      opacity: 0.7;
+    }
+
+    .choices button:active, .resetbtn:active{
+      opacity: 0.4;
+    }
+
+    .score img{
+      width: 10%;
+    }
+
+    .result{
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .resetbtn{
+      margin-top: 20px;
+      padding: 0.5rem 0.8rem;
+      color: white;
+      background-color: rgb(86, 86, 86);
+      border: 3.5px solid black;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: opacity 0.4s;
+    }
+
+  </style>
+</head>
+<body >
+  
+  <div class="container">
+    <div class="choices">
+      <button class="rockbtn"> <img src="img/rock.png" class="img1"></button>
+      <button class="paperbtn"> <img src="img/paper.png" class="img2"></button>
+      <button class="scissorbtn"> <img src="img/scissors.png" class="img3"></button>
+    </div>
+  
+    <div class="score">
+      <div class="result">  </div>
+      <div> You  <img class="playerChoice" src="img/rock.png" > <img class="compChoice" src="img/rock.png" > Computer</div>
+    </div>
+    <br>
+    <div> <strong>Wins: <span class="win"> 0</span> Loss: <span class="loss">0</span> Draw: <span class="draw">0</span> </strong></div>
+    <button class="resetbtn"> Reset Score</button>
+  </div>
+  
+  <script>
+    let win = 0;
+    let loss = 0;
+    let draw = 0;
+
+    const rockbtn = document.querySelector('.rockbtn');
+    const paperbtn = document.querySelector('.paperbtn');
+    const scissorbtn = document.querySelector('.scissorbtn');
+    const result = document.querySelector('.result');
+    const resetbtn = document.querySelector('.resetbtn');
+
+    const myChoice = document.querySelector('.playerChoice');
+    const cpChoice = document.querySelector('.compChoice');
+    const winStreak = document.querySelector('.win');
+    const lossStreak = document.querySelector('.loss');
+    const drawStreak = document.querySelector('.draw');
+    const scoreContainer = document.querySelector('.score');
+
+    rockbtn.onclick = () => makeMove('rock');
+    paperbtn.onclick = () => makeMove('paper');
+    scissorbtn.onclick = () => makeMove('scissors');
+    resetbtn.onclick = () => resetScore();
+
+    
+    
+    function makeMove(playerChoice) {
+      const pick = ['rock', 'paper', 'scissors'];
+      const randomPick = Math.round(Math.random() * 2);
+
+      const compChoice = pick[randomPick];
+
+      if (playerChoice == compChoice) {
+        result.innerHTML = `<strong>Tie</strong>`;
+        drawStreak.innerText = ++draw;
+        myChoice.src = `img/${playerChoice}.png`;
+        cpChoice.src = `img/${compChoice}.png`;
+
+      } else if (
+        (playerChoice == 'rock' && compChoice == 'scissors') ||
+        (playerChoice == 'paper' && compChoice == 'rock') ||
+        (playerChoice == 'scissors' && compChoice == 'paper')
+      ) {
+        result.innerHTML = `<strong>You win :)</strong>`;
+        winStreak.innerText = ++win;
+        myChoice.src = `img/${playerChoice}.png`;
+        cpChoice.src = `img/${compChoice}.png`;
+
+      } else {
+        result.innerHTML = `<strong>You lose noob hahah</strong>`;
+        lossStreak.innerText = ++loss;
+        myChoice.src = `img/${playerChoice}.png`;
+        cpChoice.src = `img/${compChoice}.png`;
+      }
+
+      scoreContainer.style.display = 'block';
+    }
+  
+    function resetScore(){
+      winStreak.innerText = 0;
+      lossStreak.innerText = 0;
+      drawStreak.innerText = 0;
+    }
+  
+  </script>
+
+</body>
+</html>
