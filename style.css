@@ -1,0 +1,75 @@
+
+body{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.881);
+  height: 100vh;
+
+}
+.container {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  align-items: center;
+  color: white;
+
+}
+
+.score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 40px 0px;
+  display: none;
+}
+
+button{
+  cursor: pointer;
+}
+.choices img{
+  width: 80%;
+  height: 80%;
+
+}
+
+.choices button{
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  background-color: rgb(0,0,0,0.9);
+  border: none;
+  transition: opacity 0.4s;
+}
+
+.choices button:hover, .resetbtn:hover{
+  opacity: 0.7;
+}
+
+.choices button:active, .resetbtn:active{
+  opacity: 0.4;
+}
+
+.score img{
+  width: 10%;
+}
+
+.result{
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.resetbtn{
+  margin-top: 20px;
+  padding: 0.5rem 0.8rem;
+  color: white;
+  background-color: rgb(86, 86, 86);
+  border: 3.5px solid black;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: opacity 0.4s;
+}
